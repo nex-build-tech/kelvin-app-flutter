@@ -55,3 +55,8 @@ node_modules/
 # Symbolication related
 app.*.symbols
 app.*.map.json
+
+# Database backups
+database/backups/*.sql
+!database/backups/.gitkeep
+

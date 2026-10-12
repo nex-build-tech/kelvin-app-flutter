@@ -6,7 +6,16 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "db:setup": "node setup_database.js"
+    "db:setup": "node setup_database.js",
+    "db:migrate": "node ../database/scripts/migrate.js up",
+    "db:migrate:down": "node ../database/scripts/migrate.js down",
+    "db:migrate:status": "node ../database/scripts/migrate.js status",
+    "db:create-migration": "node ../database/scripts/create_migration.js",
+    "db:seed": "node ../database/scripts/seed.js",
+    "db:reset": "node ../database/scripts/reset.js",
+    "db:backup": "node ../database/scripts/backup.js",
+    "db:restore": "node ../database/scripts/restore.js",
+    "db:check": "node ../database/scripts/check_db.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

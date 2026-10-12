@@ -179,6 +179,7 @@ For complete step-by-step instructions, table schemas, and network configuration
 | Document | Purpose |
 | :--- | :--- |
 | [docs/MYSQL_SETUP.md](docs/MYSQL_SETUP.md) | **Local MySQL 8.0 setup**, REST API bridge, table schemas, and phone/emulator connection guide. |
+| [docs/DATABASE_SCRIPTS.md](docs/DATABASE_SCRIPTS.md) | **Database migrations**, rollbacks, automated backup & restore, seed data, and health check. |
 | [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) | Local developer environment setup, running across platforms, and troubleshooting. |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Technical architecture, directory structure, state management, and routing. |
 | [docs/DATABASE_AND_MODELS.md](docs/DATABASE_AND_MODELS.md) | Local storage, domain models schemas, ER diagram, and cloud DB migration roadmap. |

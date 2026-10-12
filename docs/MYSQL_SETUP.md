@@ -343,3 +343,28 @@ All tables are created in database `kelvin_mech_db` with `utf8mb4_unicode_ci` co
    ```dart
    ApiService.instance.setCustomBaseUrl('http://192.168.1.15:5000/api');
    ```
+
+---
+
+## 11. Database Migrations & Automation Tooling
+
+For ongoing database evolutions, automated versioned migrations, rollbacks, and backup & restore:
+👉 See the dedicated guide: **[docs/DATABASE_SCRIPTS.md](DATABASE_SCRIPTS.md)**
+
+```bash
+# Run migrations forward
+npm run db:migrate
+
+# Rollback last migration
+npm run db:migrate:down
+
+# Create timestamped SQL backup
+npm run db:backup
+
+# Restore database from backup
+npm run db:restore
+
+# Check connection health & row counts
+npm run db:check
+```
+

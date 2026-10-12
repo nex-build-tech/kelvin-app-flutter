@@ -8,10 +8,12 @@ import '../../models/follow_up_model.dart';
 import '../../models/hvac_project_model.dart';
 import '../../models/hvac_task_model.dart';
 import '../../models/reminder_model.dart';
+import 'api_service.dart';
 import 'notification_service.dart';
 
 /// Central Kelvin Ops Service managing real-time MEP & HVAC telemetry,
 /// approval chains, project milestones, reminders, and follow-ups.
+/// Automatically syncs with local MySQL database via REST API.
 class KelvinOpsService extends ChangeNotifier {
   static final KelvinOpsService _instance = KelvinOpsService._internal();
   factory KelvinOpsService() => _instance;
@@ -19,6 +21,7 @@ class KelvinOpsService extends ChangeNotifier {
   KelvinOpsService._internal() {
     _initData();
     _startLiveSimulation();
+    syncFromMySqlBackend();
   }
 
   // --- Live KPI State ---
@@ -545,18 +548,90 @@ class KelvinOpsService extends ChangeNotifier {
     _notifTimer = null;
   }
 
+  /// Synchronizes state with local MySQL database via ApiService
+  Future<void> syncFromMySqlBackend() async {
+    try {
+      final isConnected = await ApiService.instance.checkHealth();
+      if (!isConnected) return;
+
+      // 1. Projects
+      final apiProjects = await ApiService.instance.fetchProjects();
+      if (apiProjects != null && apiProjects.isNotEmpty) {
+        _projects.clear();
+        _projects.addAll(apiProjects);
+      }
+
+      // 2. Tasks
+      final apiTasks = await ApiService.instance.fetchTasks();
+      if (apiTasks != null && apiTasks.isNotEmpty) {
+        _myTasks.clear();
+        _myTasks.addAll(apiTasks);
+      }
+
+      // 3. Follow-ups
+      final apiFollowUps = await ApiService.instance.fetchFollowUps();
+      if (apiFollowUps != null && apiFollowUps.isNotEmpty) {
+        _followUps.clear();
+        _followUps.addAll(apiFollowUps);
+      }
+
+      // 4. Approvals
+      final apiApprovals = await ApiService.instance.fetchApprovals();
+      if (apiApprovals != null && apiApprovals.isNotEmpty) {
+        _approvals.clear();
+        _approvals.addAll(apiApprovals);
+      }
+
+      // 5. Enquiries
+      final apiEnquiries = await ApiService.instance.fetchEnquiries();
+      if (apiEnquiries != null && apiEnquiries.isNotEmpty) {
+        _enquiries.clear();
+        _enquiries.addAll(apiEnquiries);
+      }
+
+      // 6. Reminders
+      final apiReminders = await ApiService.instance.fetchReminders();
+      if (apiReminders != null && apiReminders.isNotEmpty) {
+        _reminders.clear();
+        _reminders.addAll(apiReminders);
+      }
+
+      // 7. Activity Logs
+      final apiLogs = await ApiService.instance.fetchActivityLogs();
+      if (apiLogs != null && apiLogs.isNotEmpty) {
+        for (final log in apiLogs.reversed) {
+          if (!_activityFeed.any((a) => a.id == log.id)) {
+            _activityFeed.insert(0, log);
+          }
+        }
+      }
+
+      // Update KPI counters based on real database entries
+      _kpiTasks = _myTasks.where((t) => !t.isDone).length;
+      _kpiApprovals = _approvals.where((a) => a.status == ApprovalStatus.pending).length;
+      _kpiEnquiries = _enquiries.length;
+      _kpiBreaches = _followUps.where((f) => f.status == FollowUpStatus.overdue).length;
+
+      notifyListeners();
+    } catch (e) {
+      debugPrint('[KelvinOpsService] syncFromMySqlBackend error: $e');
+    }
+  }
+
   // --- Mutations ---
   void toggleTask(int id) {
     final idx = _myTasks.indexWhere((t) => t.id == id);
     if (idx != -1) {
       _myTasks[idx] = _myTasks[idx].copyWith(isDone: !_myTasks[idx].isDone);
       notifyListeners();
+      ApiService.instance.toggleTask(id);
     }
   }
 
   void markFollowUpDone(int id) {
     _followUps.removeWhere((f) => f.id == id);
     notifyListeners();
+    ApiService.instance.deleteFollowUp(id);
   }
 
   void snoozeFollowUp(int id, Duration duration) {
@@ -568,6 +643,7 @@ class KelvinOpsService extends ChangeNotifier {
         due: f.due.add(duration),
       );
       notifyListeners();
+      ApiService.instance.snoozeFollowUp(id, hours: duration.inHours);
     }
   }
 
@@ -588,6 +664,7 @@ class KelvinOpsService extends ChangeNotifier {
         ),
       );
       notifyListeners();
+      ApiService.instance.approvePO(id, note: note);
     }
   }
 
@@ -608,6 +685,7 @@ class KelvinOpsService extends ChangeNotifier {
         ),
       );
       notifyListeners();
+      ApiService.instance.rejectPO(id);
     }
   }
 
@@ -616,6 +694,7 @@ class KelvinOpsService extends ChangeNotifier {
     if (idx != -1) {
       _enquiries[idx] = _enquiries[idx].copyWith(assignedTo: person);
       notifyListeners();
+      ApiService.instance.assignEnquiry(id, person);
     }
   }
 
@@ -644,6 +723,7 @@ class KelvinOpsService extends ChangeNotifier {
   void addReminder(ReminderModel r) {
     _reminders.insert(0, r);
     notifyListeners();
+    ApiService.instance.createReminder(r);
   }
 
   void toggleReminder(int id) {
@@ -651,6 +731,7 @@ class KelvinOpsService extends ChangeNotifier {
     if (idx != -1) {
       _reminders[idx] = _reminders[idx].copyWith(isDone: !_reminders[idx].isDone);
       notifyListeners();
+      ApiService.instance.toggleReminder(id);
     }
   }
 

@@ -191,15 +191,31 @@ CREATE TABLE purchase_orders (
 );
 ```
 
-### API Endpoint Mapping
-| Feature | Endpoint | HTTP Method |
-| :--- | :--- | :--- |
-| Authentication | `/api/v1/auth/login` | `POST` |
-| Session Refresh | `/api/v1/auth/me` | `GET` |
-| Projects Pulse | `/api/v1/projects` | `GET` |
-| PO Approvals | `/api/v1/approvals` | `GET` |
-| Approve PO | `/api/v1/approvals/:id/approve` | `POST` |
-| Reject PO | `/api/v1/approvals/:id/reject` | `POST` |
-| Follow-ups | `/api/v1/followups` | `GET`, `POST` |
-| Snooze Follow-up | `/api/v1/followups/:id/snooze` | `PATCH` |
-| Activity Feed Stream | `/api/v1/telemetry/ws` | `WebSocket / SSE` |
+### Local MySQL 8.0 Implementation
+The active production/development relational database for Kelvin Mech is **MySQL 8.0** (`kelvin_mech_db`), bridged via a lightweight Node.js Express REST API in the `backend/` directory.
+
+- Complete setup and architecture guide: [MYSQL_SETUP.md](file:///c:/Users/Tushal/Desktop/HVAC/docs/MYSQL_SETUP.md)
+- Complete SQL DDL Schema: [schema.sql](file:///c:/Users/Tushal/Desktop/HVAC/database/schema.sql)
+- Complete Seed Data: [seed.sql](file:///c:/Users/Tushal/Desktop/HVAC/database/seed.sql)
+- Automated Database Installer: [setup_database.js](file:///c:/Users/Tushal/Desktop/HVAC/backend/setup_database.js)
+
+### Active API Endpoint Mapping
+| Feature | Endpoint | HTTP Method | Database Table |
+| :--- | :--- | :--- | :--- |
+| Health Check | `/api/health` | `GET` | Health status ping |
+| Authentication | `/api/auth/login` | `POST` | `users` |
+| Profile Update | `/api/auth/profile` | `PUT` | `users` |
+| Projects Pulse | `/api/projects` | `GET`, `POST` | `projects` |
+| Tasks Checklist | `/api/tasks` | `GET` | `tasks` |
+| Toggle Task | `/api/tasks/:id/toggle` | `PATCH` | `tasks` |
+| Follow-ups CRM | `/api/followups` | `GET`, `POST`, `DELETE` | `follow_ups` |
+| Snooze Follow-up | `/api/followups/:id/snooze` | `PATCH` | `follow_ups` |
+| PO Approvals | `/api/approvals` | `GET` | `approvals` |
+| Approve PO | `/api/approvals/:id/approve` | `POST` | `approvals` |
+| Reject PO | `/api/approvals/:id/reject` | `POST` | `approvals` |
+| Client Enquiries | `/api/enquiries` | `GET` | `enquiries` |
+| Assign Enquiry | `/api/enquiries/:id/assign` | `PATCH` | `enquiries` |
+| Reminders | `/api/reminders` | `GET`, `POST` | `reminders` |
+| Toggle Reminder | `/api/reminders/:id/toggle` | `PATCH` | `reminders` |
+| Activity Logs | `/api/activity` | `GET` | `activity_logs` |
+

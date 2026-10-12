@@ -1,10 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/constants/app_strings.dart';
+import '../../core/services/api_service.dart';
 import '../../data/mock_data.dart';
 import '../../models/user_model.dart';
 
-/// Authentication Service with persistent local session caching.
+/// Authentication Service with persistent local session caching and MySQL backend sync.
 class AuthService extends ChangeNotifier {
   UserModel? _currentUser;
   bool _isAuthenticated = false;
@@ -48,6 +49,7 @@ class AuthService extends ChangeNotifier {
   }
 
   /// Authenticates credentials and saves session to persistent storage.
+  /// First checks the local MySQL backend, falling back to cached/demo users if offline.
   Future<String?> login({
     required String email,
     required String password,
@@ -56,24 +58,23 @@ class AuthService extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    // Simulate realistic asynchronous network latency
-    await Future.delayed(const Duration(milliseconds: 650));
-
     final normalizedEmail = email.trim().toLowerCase();
     final normalizedPassword = password.trim();
 
-    // Kelvin Mech & Legacy Demo Users
-    UserModel? matchedUser;
+    // 1. Attempt authentication with local MySQL REST API
+    UserModel? matchedUser = await ApiService.instance.login(normalizedEmail, normalizedPassword);
 
-    if (normalizedEmail == 'suresh@kelvinmech.com' && normalizedPassword == 'kelvin123') {
-      matchedUser = const UserModel(
-        id: 'u_suresh',
-        name: 'Suresh Iyer',
-        email: 'suresh@kelvinmech.com',
-        role: 'Procurement Manager',
-        phone: '+91 98201 23456',
-        department: 'MEP Procurement',
-      );
+    // 2. Fallback to local demo accounts if MySQL backend is offline or returned null
+    if (matchedUser == null) {
+      if (normalizedEmail == 'suresh@kelvinmech.com' && normalizedPassword == 'kelvin123') {
+        matchedUser = const UserModel(
+          id: 'u_suresh',
+          name: 'Suresh Iyer',
+          email: 'suresh@kelvinmech.com',
+          role: 'Procurement Manager',
+          phone: '+91 98201 23456',
+          department: 'MEP Procurement',
+        );
     } else if (normalizedEmail == 'priya@kelvinmech.com' && normalizedPassword == 'kelvin123') {
       matchedUser = const UserModel(
         id: 'u_priya',
@@ -111,8 +112,9 @@ class AuthService extends ChangeNotifier {
         role: 'Chief Operations Officer',
       );
     }
+  }
 
-    if (matchedUser != null) {
+  if (matchedUser != null) {
       _rememberMe = rememberMe;
       _currentUser = matchedUser;
       _isAuthenticated = true;

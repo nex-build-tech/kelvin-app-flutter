@@ -15,6 +15,7 @@
 - [Overview & Value Proposition](#-overview--value-proposition)
 - [Key Features & Modules](#-key-features--modules)
 - [Live Telemetry Engine](#-live-telemetry-engine)
+- [Local MySQL Database & Backend](#-local-mysql-database--backend)
 - [Quick Start Guide](#-quick-start-guide)
 - [Building Release APK](#-building-release-apk)
 - [Pre-configured Demo Accounts](#-pre-configured-demo-accounts)
@@ -151,10 +152,33 @@ For deep architectural details, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
 ---
 
+## 🗄️ Local MySQL Database & Backend
+
+Kelvin Mech integrates with a local **MySQL 8.0** database (`kelvin_mech_db`) bridged by a lightweight Node.js Express REST API in `backend/`:
+
+### 1-Command Database Setup:
+```bash
+cd backend
+npm install
+node setup_database.js
+```
+*Creates `kelvin_mech_db`, applies 8 tables (`users`, `projects`, `tasks`, `follow_ups`, `approvals`, `enquiries`, `reminders`, `activity_logs`), and seeds initial MEP operations data.*
+
+### Start Backend API:
+```bash
+npm start
+# Server listens on http://localhost:5000 (Android Emulator: http://10.0.2.2:5000)
+```
+
+For complete step-by-step instructions, table schemas, and network configuration, see **[docs/MYSQL_SETUP.md](docs/MYSQL_SETUP.md)**.
+
+---
+
 ## 📚 Documentation Index
 
 | Document | Purpose |
 | :--- | :--- |
+| [docs/MYSQL_SETUP.md](docs/MYSQL_SETUP.md) | **Local MySQL 8.0 setup**, REST API bridge, table schemas, and phone/emulator connection guide. |
 | [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) | Local developer environment setup, running across platforms, and troubleshooting. |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Technical architecture, directory structure, state management, and routing. |
 | [docs/DATABASE_AND_MODELS.md](docs/DATABASE_AND_MODELS.md) | Local storage, domain models schemas, ER diagram, and cloud DB migration roadmap. |

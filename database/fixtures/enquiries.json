@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "ref_number": "ENQ-455",
+    "client_name": "GMR Hyderabad Cargo",
+    "scope_summary": "Ventilation & Exhaust system for cargo warehouse (12,000 sq ft)",
+    "estimated_value": "₹85L",
+    "source_channel": "whatsapp",
+    "status": "newLead",
+    "assigned_to": "Suresh Iyer",
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  },
+  {
+    "id": 2,
+    "ref_number": "ENQ-454",
+    "client_name": "Prestige Tech Park",
+    "scope_summary": "Chiller plant revamping & energy audit (3x 400 TR chillers)",
+    "estimated_value": "₹1.4 Cr",
+    "source_channel": "email",
+    "status": "estimating",
+    "assigned_to": "Priya Shah",
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  },
+  {
+    "id": 3,
+    "ref_number": "ENQ-452",
+    "client_name": "L&T Metro Infra",
+    "scope_summary": "Basement ventilation fans ×16 with acoustic silencers",
+    "estimated_value": "₹38L",
+    "source_channel": "phone",
+    "status": "sent",
+    "assigned_to": "Sachin G",
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  },
+  {
+    "id": 4,
+    "ref_number": "ENQ-449",
+    "client_name": "Phoenix Mills Ltd",
+    "scope_summary": "Retail Mall VRF expansion — Phase 3 (80 indoor units)",
+    "estimated_value": "₹2.1 Cr",
+    "source_channel": "walkin",
+    "status": "converted",
+    "assigned_to": "Suresh Iyer",
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  }
+]

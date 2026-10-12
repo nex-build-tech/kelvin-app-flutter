@@ -1,0 +1,32 @@
+[
+  {
+    "id": "lead_architect",
+    "title": "Lead Architect / Admin",
+    "description": "Full system administration, architecture design, clearances",
+    "created_at": "2026-10-12T06:28:23.000Z"
+  },
+  {
+    "id": "procurement_mgr",
+    "title": "Procurement Manager",
+    "description": "Manages PO approvals, vendor follow-ups, quotes",
+    "created_at": "2026-10-12T06:28:23.000Z"
+  },
+  {
+    "id": "project_mgr",
+    "title": "Project Manager",
+    "description": "Oversees MEP construction sites, milestones, and tasks",
+    "created_at": "2026-10-12T06:28:23.000Z"
+  },
+  {
+    "id": "site_engineer",
+    "title": "Site Engineer",
+    "description": "Field inspections, daily checklist reporting, equipment readings",
+    "created_at": "2026-10-12T06:28:23.000Z"
+  },
+  {
+    "id": "viewer",
+    "title": "Viewer",
+    "description": "Read-only access to dashboards and status",
+    "created_at": "2026-10-12T06:28:23.000Z"
+  }
+]

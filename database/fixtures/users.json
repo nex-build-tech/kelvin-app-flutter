@@ -1,0 +1,50 @@
+[
+  {
+    "id": "u_admin",
+    "name": "Sachin G",
+    "email": "admin@kelvinmech.com",
+    "password": "admin123",
+    "role": "Admin / Architect",
+    "phone": "+91 98203 45678",
+    "department": "Engineering & Architecture",
+    "avatar_url": null,
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  },
+  {
+    "id": "u_demo",
+    "name": "Demo User",
+    "email": "demo@kelvinmech.com",
+    "password": "demo",
+    "role": "Viewer",
+    "phone": "+91 98204 56789",
+    "department": "Field Operations",
+    "avatar_url": null,
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  },
+  {
+    "id": "u_priya",
+    "name": "Priya Shah",
+    "email": "priya@kelvinmech.com",
+    "password": "kelvin123",
+    "role": "Project Manager",
+    "phone": "+91 98202 34567",
+    "department": "MEP Operations",
+    "avatar_url": null,
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  },
+  {
+    "id": "u_suresh",
+    "name": "Suresh Iyer",
+    "email": "suresh@kelvinmech.com",
+    "password": "kelvin123",
+    "role": "Procurement Manager",
+    "phone": "+91 98201 23456",
+    "department": "MEP Procurement",
+    "avatar_url": null,
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  }
+]

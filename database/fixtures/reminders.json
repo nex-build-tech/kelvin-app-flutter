@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "title": "Follow-up with Daikin for dispatch note",
+    "scheduled_time": "2026-10-12T08:14:23.000Z",
+    "reminder_type": "followup",
+    "priority": "high",
+    "repeat_frequency": "none",
+    "is_done": 0,
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  },
+  {
+    "id": 2,
+    "title": "Approve pending Carrier PO for ABC Tower",
+    "scheduled_time": "2026-10-12T10:14:23.000Z",
+    "reminder_type": "approval",
+    "priority": "high",
+    "repeat_frequency": "none",
+    "is_done": 0,
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  },
+  {
+    "id": 3,
+    "title": "Weekly site coordination meeting with GMR team",
+    "scheduled_time": "2026-10-12T12:14:23.000Z",
+    "reminder_type": "meeting",
+    "priority": "medium",
+    "repeat_frequency": "weekly",
+    "is_done": 0,
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  },
+  {
+    "id": 4,
+    "title": "Submit revised MEP billing for DLF Cybercity",
+    "scheduled_time": "2026-10-13T06:14:23.000Z",
+    "reminder_type": "task",
+    "priority": "medium",
+    "repeat_frequency": "none",
+    "is_done": 0,
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  },
+  {
+    "id": 5,
+    "title": "Review Metro Station progress %",
+    "scheduled_time": "2026-10-14T06:14:23.000Z",
+    "reminder_type": "task",
+    "priority": "low",
+    "repeat_frequency": "none",
+    "is_done": 0,
+    "created_at": "2026-10-12T06:14:23.000Z",
+    "updated_at": "2026-10-12T06:14:23.000Z"
+  }
+]

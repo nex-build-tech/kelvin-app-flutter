@@ -1,0 +1,37 @@
+[
+  {
+    "id": "act_1",
+    "icon_emoji": "✅",
+    "event_text": "PO-2024-089 approved — ₹18.5L Daikin",
+    "color_tag": "success",
+    "created_at": "2026-10-12T06:04:23.000Z"
+  },
+  {
+    "id": "act_2",
+    "icon_emoji": "🚨",
+    "event_text": "SLA BREACH — Copper Pipes 5 days overdue",
+    "color_tag": "danger",
+    "created_at": "2026-10-12T05:44:23.000Z"
+  },
+  {
+    "id": "act_3",
+    "icon_emoji": "📥",
+    "event_text": "New enquiry — Greenfield Developers (WhatsApp)",
+    "color_tag": "primary",
+    "created_at": "2026-10-12T04:14:23.000Z"
+  },
+  {
+    "id": "act_4",
+    "icon_emoji": "⚠️",
+    "event_text": "City Hospital timeline revised — 2 week delay",
+    "color_tag": "warning",
+    "created_at": "2026-10-12T02:14:23.000Z"
+  },
+  {
+    "id": "act_5",
+    "icon_emoji": "📦",
+    "event_text": "PO-2024-092 Voltas — delivery confirmed at Airport T3",
+    "color_tag": "primary",
+    "created_at": "2026-10-12T00:14:23.000Z"
+  }
+]

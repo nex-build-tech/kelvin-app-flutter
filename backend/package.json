@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
+    "db": "node ../database/scripts/menu.js",
     "db:setup": "node setup_database.js",
     "db:migrate": "node ../database/scripts/migrate.js up",
     "db:migrate:down": "node ../database/scripts/migrate.js down",
@@ -15,7 +16,12 @@
     "db:reset": "node ../database/scripts/reset.js",
     "db:backup": "node ../database/scripts/backup.js",
     "db:restore": "node ../database/scripts/restore.js",
-    "db:check": "node ../database/scripts/check_db.js"
+    "db:check": "node ../database/scripts/check_db.js",
+    "db:optimize": "node ../database/scripts/optimize.js",
+    "db:verify": "node ../database/scripts/verify_integrity.js",
+    "db:fixtures:export": "node ../database/scripts/export_fixtures.js",
+    "db:fixtures:import": "node ../database/scripts/import_fixtures.js",
+    "db:anonymize": "node ../database/scripts/anonymize.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

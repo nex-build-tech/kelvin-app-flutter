@@ -1,0 +1,34 @@
+[
+  {
+    "role_id": "lead_architect",
+    "permission": "manage_all"
+  },
+  {
+    "role_id": "procurement_mgr",
+    "permission": "approve_po"
+  },
+  {
+    "role_id": "procurement_mgr",
+    "permission": "manage_vendors"
+  },
+  {
+    "role_id": "procurement_mgr",
+    "permission": "reject_po"
+  },
+  {
+    "role_id": "project_mgr",
+    "permission": "assign_tasks"
+  },
+  {
+    "role_id": "project_mgr",
+    "permission": "update_projects"
+  },
+  {
+    "role_id": "site_engineer",
+    "permission": "log_telemetry"
+  },
+  {
+    "role_id": "site_engineer",
+    "permission": "toggle_tasks"
+  }
+]
